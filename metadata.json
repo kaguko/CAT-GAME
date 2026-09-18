@@ -1,0 +1,7 @@
+{
+  "name": "Turbo Purr Cat",
+  "description": "A Ghibli-style casual clicker game featuring cat purr meter progression, state animations, skin unlocks, and ad monetization features.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
