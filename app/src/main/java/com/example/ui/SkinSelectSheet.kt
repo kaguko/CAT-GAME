@@ -2,12 +2,20 @@ package com.example.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,13 +38,11 @@ fun SkinSelectSheet(
     onUnlockWithAd: (Skin) -> Unit,
     onDismiss: () -> Unit
 ) {
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = Cream
-    ) {
+    ModalBottomSheet(onDismissRequest = onDismiss, containerColor = Cream) {
         Text(
             "Bộ sưu tập mèo",
-            fontSize = 22.sp, fontWeight = FontWeight.Bold,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
             color = WoodDark,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp)
         )
@@ -51,12 +57,9 @@ fun SkinSelectSheet(
                 val unlocked = state.isUnlocked(skin)
                 val selected = state.currentSkin == skin
                 Column(
-                    Modifier
-                        .clip(RoundedCornerShape(16.dp))
+                    Modifier.clip(RoundedCornerShape(16.dp))
                         .background(if (selected) LeafGreen else Color(0xFFE8D9B8))
-                        .clickable {
-                            if (unlocked) onSelect(skin) else onUnlockWithAd(skin)
-                        }
+                        .clickable { if (unlocked) onSelect(skin) else onUnlockWithAd(skin) }
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -65,7 +68,7 @@ fun SkinSelectSheet(
                     Text(skin.displayName, color = WoodDark, fontWeight = FontWeight.Bold)
                     if (!unlocked) {
                         Text(
-                            "Cần ${skin.unlockAtPurrCount} lần",
+                            "Cần ${skin.unlockAtPurrCount} lần hoặc xem quảng cáo",
                             color = WoodDark.copy(alpha = 0.7f),
                             fontSize = 12.sp
                         )
