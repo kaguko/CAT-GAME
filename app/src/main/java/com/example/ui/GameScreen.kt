@@ -70,7 +70,7 @@ fun GameScreen(
             Box(Modifier.size(280.dp).pointerInput(Unit) {
                 detectTapGestures(onTap = { onCatTapped() })
             }) {
-                CatCanvas(state.state, state.currentSkin, state.isClimaxing, Modifier.fillMaxSize())
+                CatSprite(state.state, state.currentSkin, state.isClimaxing, Modifier.fillMaxSize())
             }
             Spacer(Modifier.weight(1f))
 
